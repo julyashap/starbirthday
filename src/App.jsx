@@ -74,7 +74,7 @@ export default function App() {
             {traits.map((trait, i) => (
               <motion.path
                 key={`path-${i}`}
-                d={`M 500 375 Q ${500 + trait.x / 2} ${375 + trait.y + 30}, ${500 + trait.x + (trait.x < 0 ? 30 : -10)} ${375 + trait.y}`}
+                d={`M 500 375 Q ${500 + trait.x / 2} ${375 + trait.y + 30}, ${500 + trait.x + (trait.x < 0 ? 30 : -1)} ${375 + trait.y}`}
                 fill="none"
                 stroke={hoveredTrait === i ? trait.color : (darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.08)")}
                 strokeWidth={hoveredTrait === i ? "3" : "1.5"}
@@ -196,7 +196,9 @@ export default function App() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-orange-400/10 dark:bg-orange-600/5 rounded-full blur-[140px] -z-0" />
       </section>
 
-      <footer className="py-20 text-center opacity-30 text-[10px] font-black tracking-[1.5em] uppercase"></footer>
+      <footer className="py-20 text-center opacity-30 text-[15px] font-black tracking-[0.5em] uppercase mr-[-1.5em]">
+        May 8, 2026
+      </footer>
     </div>
   );
 }
