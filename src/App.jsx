@@ -4,13 +4,14 @@ import confetti from 'canvas-confetti';
 
 import photoLight from './assets/star-light.jpg';
 import photoDark from './assets/star-dark.jpg';
+import angelina from './assets/angelina.jpg';
 import julya from './assets/julya.jpg';
 
 const traits = [
   { text: 'ЯРКАЯ', darkText: 'ВАЙБОВАЯ', x: -370, y: -150, color: '#D4AF37' },
   { text: 'КРАСИВАЯ', darkText: 'СЛЕЙНАЯ', x: 350, y: -80, color: '#C78E9B' },
   { text: 'ИСКРЕННЯЯ', darkText: 'НЕФОРКА', x: -380, y: 120, color: '#8DA399' },
-  { text: 'КРЕАТИВНАЯ',darkText: 'ЭЩКЕРЕЩНАЯ', x: 380, y: 180, color: '#9BB7D4' },
+  { text: 'КРЕАТИВНАЯ', darkText: 'ЭЩКЕРЕЩНАЯ', x: 380, y: 180, color: '#9BB7D4' },
 ];
 
 export default function App() {
@@ -18,7 +19,6 @@ export default function App() {
   const [isBlownOut, setIsBlownOut] = useState(false);
   const [hoveredTrait, setHoveredTrait] = useState(null);
 
-  // Для 3D эффекта карточки
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseXSpring = useSpring(x);
@@ -49,23 +49,23 @@ export default function App() {
   }, [darkMode]);
 
   return (
-    <div className={`min-h-screen transition-colors duration-1000 ${darkMode ? 'bg-[#050505] text-white' : 'bg-[#FAF9F6] text-[#1a1a1a]'} font-sans overflow-x-hidden`}>
+    <div className={`min-h-screen transition-colors duration-1000 ${darkMode ? 'bg-[#0a0a0f] text-gray-100' : 'bg-[#FAF9F6] text-[#1a1a1a]'} font-sans overflow-x-hidden`}>
 
       <button 
         onClick={() => setDarkMode(!darkMode)}
-        className="fixed top-6 right-6 z-50 p-4 rounded-full bg-white/10 dark:bg-gray-800/40 backdrop-blur-md shadow-2xl border border-white/20 active:scale-90 transition-all"
+        className="fixed top-6 right-6 z-50 p-4 rounded-full bg-white/10 dark:bg-white/5 backdrop-blur-xl shadow-2xl border border-white/20 active:scale-90 transition-all"
       >
         {darkMode ? '🌙' : '☀️'}
       </button>
 
-      {/* СЕКЦИЯ 1: ГЛАВНАЯ (Градиенты для обеих тем) */}
+      {/* СЕКЦИЯ 1: ГЛАВНАЯ */}
       <section className="relative min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-b from-transparent via-orange-50/20 to-orange-100/30 dark:from-transparent dark:via-[#0c0c14] dark:to-[#1a1a2e]">
         <motion.h3 
           initial={{ opacity: 0, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-center font-black text-4xl md:text-6xl tracking-tighter uppercase -mb-10"
+          className="text-center font-black text-4xl md:text-6xl tracking-tighter uppercase -mb-10 ${darkMode ? 'text-white' : 'text-black'}"
         >
-          Happy Birthday
+          {darkMode ? "Birthday Happy" : "Happy Birthday"}
         </motion.h3>
         
         <div className="relative w-full max-w-6xl flex items-center justify-center h-[750px]">
@@ -89,7 +89,7 @@ export default function App() {
               onMouseEnter={() => setHoveredTrait(i)}
               onMouseLeave={() => setHoveredTrait(null)}
               onClick={() => confetti({ particleCount: 40, colors: [trait.color], origin: { y: 0.4 } })}
-              className="absolute z-20 px-8 py-4 cursor-pointer bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl transition-all"
+              className="absolute z-20 px-8 py-4 cursor-pointer bg-white/90 dark:bg-[#151520]/90 backdrop-blur-md rounded-2xl border border-white/20 dark:border-white/5 shadow-xl transition-all"
               style={{ left: `calc(50% + ${trait.x}px)`, top: `calc(50% + ${trait.y}px)`, transform: 'translate(-50%, -50%)' }}
             >
               <span className="font-black text-xs tracking-[0.3em]" style={{ color: trait.color }}>
@@ -98,7 +98,6 @@ export default function App() {
             </motion.div>
           ))}
 
-          {/* ЦЕНТРАЛЬНОЕ ФОТО С 3D-ЭФФЕКТОМ И РАМКОЙ */}
           <motion.div 
             style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
             onMouseMove={handleMouseMove}
@@ -112,7 +111,7 @@ export default function App() {
               className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent,transparent,rgba(212,175,55,0.5),transparent)] dark:bg-[conic-gradient(from_0deg,transparent,transparent,#fbbf24,transparent)]"
             />
             
-            <div className="relative bg-white dark:bg-gray-900 p-4 rounded-[2.5rem]" style={{ transform: "translateZ(50px)" }}>
+            <div className="relative bg-white dark:bg-[#11111a] p-4 rounded-[2.5rem]" style={{ transform: "translateZ(50px)" }}>
               <img 
                 src={darkMode ? photoDark : photoLight} 
                 className="w-64 h-80 md:w-80 md:h-[440px] object-cover rounded-3xl"
@@ -125,29 +124,29 @@ export default function App() {
         </div>
       </section>
 
-      {/* СЕКЦИЯ 2: ПИСЬМА (Темный градиент) */}
-      <section id="wishes" className="py-40 px-6 bg-gradient-to-tr from-stone-100 via-white to-orange-50/30 dark:from-[#1a1a2e] dark:via-[#0f0f1a] dark:to-[#1a1025]">
+      {/* СЕКЦИЯ 2: ПИСЬМА */}
+      <section id="wishes" className="py-40 px-6 bg-gradient-to-b from-orange-100/30 via-white to-orange-50/30 dark:from-[#1a1a2e] dark:via-[#151525] dark:to-[#1a1025]">
         <div className="max-w-6xl mx-auto">
           <motion.h3 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-center font-black text-4xl md:text-6xl tracking-tighter uppercase mb-20"
+            className="text-center font-black text-4xl md:text-6xl tracking-tighter uppercase mb-20 text-black dark:text-white"
           >
             Words From Friends
           </motion.h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
-              { from: 'Анжелины', img: 'https://picsum.photos/400/300?sig=11', text: 'Твоё видение мира — это дар.' },
-              { from: 'Юльки', img: julya, text: 'Пусть вдохновение никогда не покидает тебя.' },
-              { from: 'Динарикса', img: 'https://picsum.photos/400/300?sig=12', text: 'Свети так же ярко, как твои лучшие работы!' }
+              { from: 'Анжелины', img: angelina, text: 'Пусть в твоей жизни будет больше тепла, счастья и людей, которые будут беречь тебя так, как ты этого заслуживаешь' },
+              { from: 'Юльки', img: julya, text: 'Желаю, чтобы твое невероятное хаотичное творчество никогда-никогда не угасало, как и нефор внутри тебя' },
+              { from: 'Динарикса', img: 'https://picsum.photos/400/300?sig=12', text: 'Арбидол' }
             ].map((letter, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -15 }}
-                className="bg-white/70 dark:bg-gray-800/40 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/10"
+                className="bg-white/70 dark:bg-white/5 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/10"
               >
                 <img src={letter.img} className="w-full h-52 object-cover rounded-2xl mb-8 grayscale hover:grayscale-0 transition-all duration-1000" />
-                <h3 className="text-xl font-black mb-3 uppercase tracking-tighter">От {letter.from}</h3>
+                <h3 className="text-xl font-black mb-3 uppercase tracking-tighter text-black dark:text-white">От {letter.from}</h3>
                 <p className="text-gray-500 dark:text-gray-400 font-medium italic leading-relaxed">"{letter.text}"</p>
               </motion.div>
             ))}
@@ -155,8 +154,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* СЕКЦИЯ 3: ТОРТ (Темный градиент с акцентом) */}
-      <section className="py-40 bg-gradient-to-b from-orange-50/30 to-white dark:from-[#1a1025] dark:via-[#1a0d05] dark:to-[#050505] relative overflow-hidden flex flex-col items-center">
+      {/* СЕКЦИЯ 3: ТОРТ */}
+      <section className="py-40 bg-gradient-to-b from-orange-50/30 to-white dark:from-[#1a1025] dark:via-[#121220] dark:to-[#0a0a0f] relative overflow-hidden flex flex-col items-center">
         <div className="relative z-10 text-center">
           <motion.div 
             whileHover={{ scale: 1.1 }}
@@ -184,19 +183,18 @@ export default function App() {
             </div>
           </motion.div>
           
-          <h2 className="text-5xl font-black uppercase tracking-tighter mb-4">
+          <h2 className="text-5xl font-black uppercase tracking-tighter mb-4 text-black dark:text-white">
             {isBlownOut ? "Wish Sent" : "Make a Wish"}
           </h2>
-          <p className="text-gray-400 font-medium tracking-wide">
+          <p className="text-gray-500 dark:text-gray-400 font-medium tracking-wide">
             {isBlownOut ? "С днем рождения!" : "Загадай желание и нажми на свечу"}
           </p>
         </div>
         
-        {/* Декор: Большое размытое пятно фона */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-orange-400/10 dark:bg-orange-600/5 rounded-full blur-[140px] -z-0" />
       </section>
 
-      <footer className="py-20 text-center opacity-30 text-[15px] font-black tracking-[0.5em] uppercase mr-[-1.5em]">
+      <footer className="py-20 text-center bg-[#FAF9F6] dark:bg-[#0a0a0f] transition-colors duration-1000 opacity-40 text-[15px] font-black tracking-[0.5em] uppercase mr-[-1em] text-black dark:text-white">
         May 8, 2026
       </footer>
     </div>
