@@ -6,6 +6,7 @@ import photoLight from './assets/star-light.jpg';
 import photoDark from './assets/star-dark.jpg';
 import angelina from './assets/angelina.jpg';
 import julya from './assets/julya.jpg';
+import dinara from './assets/dinara.jpg'
 
 const traits = [
   { text: 'ЯРКАЯ', darkText: 'ВАЙБОВАЯ', x: -370, y: -150, color: '#D4AF37' },
@@ -138,7 +139,7 @@ export default function App() {
             {[
               { from: 'Анжелины', img: angelina, text: 'Пусть в твоей жизни будет больше тепла, счастья и людей, которые будут беречь тебя так, как ты этого заслуживаешь' },
               { from: 'Юльки', img: julya, text: 'Желаю, чтобы твое невероятное хаотичное творчество никогда-никогда не угасало, как и нефор внутри тебя' },
-              { from: 'Динарикса', img: 'https://picsum.photos/400/300?sig=12', text: 'Арбидол' }
+              { from: 'Динарикса', img: dinara, text: 'От всего сердца желаю тебе в этом году легко брать те высоты, которые ты сама наметила' }
             ].map((letter, i) => (
               <motion.div
                 key={i}
