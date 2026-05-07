@@ -115,7 +115,7 @@ export default function App() {
             <div className="relative bg-white dark:bg-gray-900 p-4 rounded-[2.5rem]" style={{ transform: "translateZ(50px)" }}>
               <img 
                 src={darkMode ? photoDark : photoLight} 
-                className="w-64 h-80 md:w-80 md:h-[480px] object-cover rounded-3xl"
+                className="w-64 h-80 md:w-80 md:h-[440px] object-cover rounded-3xl"
               />
               <div className="pt-8 pb-4 text-center font-black text-6xl tracking-tighter uppercase transition-colors duration-500 text-black dark:text-white">
                   {darkMode ? "Icon" : "Star"}
